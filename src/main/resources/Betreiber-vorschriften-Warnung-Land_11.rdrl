@@ -1,0 +1,14 @@
+import java.lang.Number;
+import de.wps.bube.basis.base.web.openapi.model.BetriebsstaetteDto;
+import de.wps.bube.basis.base.rume.dto.RumeUploadDto;
+import de.wps.bube.basis.base.rume.dto.KpTeilergebnisDto;
+
+rule "Betreiber-vorschriften-Warnung-Land_11"
+	dialect "java"
+	agenda-group "KOMPLEXPRUEFUNG_11_BETREIBER"
+	when
+		RumeUploadDto( getBetriebsstaette() != null , getBetriebsstaette().getVorschriften().isEmpty())
+		teilergebnis : KpTeilergebnisDto( )
+	then
+		teilergebnis.addRegelergebnisWarnung( "Vorschriften liegt nahe an den Maximalwerten", "Betreiber-vorschriften-Warnung-Land_11", "Vorschriften muss unter Kontrolle sein" );
+end

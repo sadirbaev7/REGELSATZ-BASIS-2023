@@ -1,0 +1,14 @@
+import java.lang.Number;
+import de.wps.bube.basis.base.web.openapi.model.BetriebsstaetteDto;
+import de.wps.bube.basis.base.rume.dto.RumeUploadDto;
+import de.wps.bube.basis.base.rume.dto.KpTeilergebnisDto;
+
+rule "Behoerde-kommunikationsverbindungen-Fehler-Land_03"
+	dialect "java"
+	agenda-group "KOMPLEXPRUEFUNG_03_BEHOERDE"
+	when
+		RumeUploadDto( getBetriebsstaette() != null , getBetriebsstaette().getKommunikationsverbindungen().isEmpty())
+		teilergebnis : KpTeilergebnisDto( )
+	then
+		teilergebnis.addRegelergebnisFehler( "Kommunikationsverbindungen ist außerhalb der Grenzen", "Behoerde-kommunikationsverbindungen-Fehler-Land_03", "Kommunikationsverbindungen kann nicht genehmigt werden" );
+end
