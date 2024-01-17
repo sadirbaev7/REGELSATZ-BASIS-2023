@@ -46,9 +46,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>q</groupId>
-      <artifactId>q</artifactId>
-      <version>q</version>
+      <groupId>de.wps.bube</groupId>
+      <artifactId>basis</artifactId>
+      <version>4.14.0</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
