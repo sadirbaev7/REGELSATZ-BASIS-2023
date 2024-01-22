@@ -1,5 +1,5 @@
 import java.lang.Number;
-import de.wps.bube.basis.base.web.openapi.model.BetriebsstaetteDto;
+
 import de.wps.bube.basis.base.rume.dto.RumeUploadDto;
 import de.wps.bube.basis.base.rume.dto.KpTeilergebnisDto;
 
