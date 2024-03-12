@@ -1,0 +1,14 @@
+import java.lang.Number;
+
+import de.wps.bube.basis.base.rume.dto.RumeUploadDto;
+import de.wps.bube.basis.base.rume.dto.KpTeilergebnisDto;
+
+rule "Betreiber-Vorjahr-Warnung"
+	dialect "java"
+	agenda-group "KOMPLEXPRUEFUNG_BETREIBER"
+	when
+		RumeUploadDto( getBetriebsstaette() != null , getBetriebsstaetteVorjahr() == null)
+		teilergebnis : KpTeilergebnisDto( )
+	then
+		teilergebnis.addRegelergebnisWarnung( "Vorjahresdaten wurden nicht bereitgestellt", "Betreiber-Vorjahr-Warnung", "Es sollten Vorjahresdaten vorgelegt werden" );
+end
